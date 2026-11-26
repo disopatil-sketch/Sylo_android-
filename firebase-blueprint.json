@@ -1,0 +1,270 @@
+{
+  "entities": {
+    "UserAccount": {
+      "title": "UserAccount",
+      "description": "Private user account profile, language preferences, interests, social graph, and creator monetization balances.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID of the owner." },
+        "displayName": { "type": "string", "description": "User display name." },
+        "username": { "type": "string", "description": "Unique public handle without @." },
+        "email": { "type": "string", "description": "User email address (PII, owner-only)." },
+        "bio": { "type": "string", "description": "User biography." },
+        "location": { "type": "string", "description": "City or region in South Asia." },
+        "avatarTag": { "type": "string", "description": "Avatar badge/color key or photo URI." },
+        "interfaceLanguage": { "type": "string", "description": "Primary app UI language code." },
+        "preferredLanguages": { "type": "array", "description": "Up to 15 preferred regional language codes." },
+        "interests": { "type": "array", "description": "Up to 12 selected interest topics." },
+        "likedPostIds": { "type": "array", "description": "Bounded recent liked post IDs." },
+        "savedPostIds": { "type": "array", "description": "Bounded saved post IDs." },
+        "followingIds": { "type": "array", "description": "Bounded followed creator IDs." },
+        "blockedUserIds": { "type": "array", "description": "Bounded blocked user IDs." },
+        "privateAccount": { "type": "boolean", "description": "Whether account is private." },
+        "onboardingCompleted": { "type": "boolean", "description": "Whether language/interest onboarding finished." },
+        "lowDataMode": { "type": "boolean", "description": "Whether low-data mode for mobile networks is active." },
+        "verified": { "type": "boolean", "description": "Creator verification badge (admin-controlled)." },
+        "earningsInr": { "type": "number", "description": "Creator monetization earnings in INR." },
+        "giftCoins": { "type": "integer", "description": "Virtual gift coins earned from live streams." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp via FieldValue.serverTimestamp()." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp via FieldValue.serverTimestamp()." }
+      },
+      "required": ["userId", "displayName", "username", "interfaceLanguage", "createdAt", "updatedAt"]
+    },
+    "PublicProfile": {
+      "title": "PublicProfile",
+      "description": "Publicly discoverable creator or celebrity card with no PII.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "username": { "type": "string" },
+        "bio": { "type": "string" },
+        "location": { "type": "string" },
+        "avatarTag": { "type": "string" },
+        "visibility": { "type": "string", "enum": ["public", "private"] },
+        "verified": { "type": "boolean" },
+        "celebrity": { "type": "boolean" },
+        "category": { "type": "string" },
+        "languages": { "type": "array" },
+        "followersCount": { "type": "integer" },
+        "followingCount": { "type": "integer" },
+        "postsCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "displayName", "username", "visibility", "createdAt", "updatedAt"]
+    },
+    "PostItem": {
+      "title": "PostItem",
+      "description": "Multilingual social post, short video, meme, verified news article, or celebrity update.",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorHandle": { "type": "string" },
+        "authorVerified": { "type": "boolean" },
+        "contentType": { "type": "string", "enum": ["POST", "SHORT_VIDEO", "MEME", "NEWS", "CELEBRITY"] },
+        "languageCode": { "type": "string" },
+        "category": { "type": "string" },
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "mediaAssetKey": { "type": "string" },
+        "mediaKind": { "type": "string", "enum": ["IMAGE", "VIDEO", "TEXT"] },
+        "durationSeconds": { "type": "integer" },
+        "musicTrack": { "type": "string" },
+        "videoFilter": { "type": "string" },
+        "videoSpeed": { "type": "string" },
+        "overlayCaption": { "type": "string" },
+        "publisherSource": { "type": "string" },
+        "hashtags": { "type": "array" },
+        "visibility": { "type": "string", "enum": ["public", "removed"] },
+        "featured": { "type": "boolean" },
+        "likesCount": { "type": "integer" },
+        "commentsCount": { "type": "integer" },
+        "sharesCount": { "type": "integer" },
+        "viewsCount": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "authorName", "authorHandle", "contentType", "languageCode", "category", "title", "body", "mediaKind", "visibility", "createdAt", "updatedAt"]
+    },
+    "PostComment": {
+      "title": "PostComment",
+      "description": "Comment on a post, short video, meme, or news story.",
+      "type": "object",
+      "properties": {
+        "postId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "languageCode": { "type": "string" },
+        "text": { "type": "string" },
+        "visibility": { "type": "string", "enum": ["public", "removed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["postId", "authorId", "authorName", "languageCode", "text", "visibility", "createdAt"]
+    },
+    "LiveStream": {
+      "title": "LiveStream",
+      "description": "Active or ended creator live video stream session.",
+      "type": "object",
+      "properties": {
+        "hostId": { "type": "string" },
+        "hostName": { "type": "string" },
+        "hostHandle": { "type": "string" },
+        "title": { "type": "string" },
+        "languageCode": { "type": "string" },
+        "category": { "type": "string" },
+        "status": { "type": "string", "enum": ["LIVE", "ENDED"] },
+        "viewersCount": { "type": "integer" },
+        "likesCount": { "type": "integer" },
+        "giftsCoinsTotal": { "type": "integer" },
+        "moderationSlowMode": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["hostId", "hostName", "hostHandle", "title", "languageCode", "category", "status", "viewersCount", "likesCount", "giftsCoinsTotal", "createdAt", "updatedAt"]
+    },
+    "LiveMessage": {
+      "title": "LiveMessage",
+      "description": "Live stream comment, reaction, or gift event.",
+      "type": "object",
+      "properties": {
+        "streamId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "text": { "type": "string" },
+        "messageType": { "type": "string", "enum": ["CHAT", "GIFT", "REACTION"] },
+        "giftAmountCoins": { "type": "integer" },
+        "languageCode": { "type": "string" },
+        "visibility": { "type": "string", "enum": ["public", "removed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["streamId", "senderId", "senderName", "text", "messageType", "giftAmountCoins", "languageCode", "visibility", "createdAt"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Direct 1:1 or group messaging thread.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "groupChat": { "type": "boolean" },
+        "memberUids": { "type": "array" },
+        "memberNames": { "type": "array" },
+        "lastMessage": { "type": "string" },
+        "lastSenderId": { "type": "string" },
+        "requestStatus": { "type": "string", "enum": ["ACCEPTED", "REQUEST"] },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "groupChat", "memberUids", "memberNames", "lastMessage", "lastSenderId", "requestStatus", "createdBy", "createdAt", "updatedAt"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "Message inside a conversation with denormalized memberUids for flat security rule evaluation.",
+      "type": "object",
+      "properties": {
+        "conversationId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "memberUids": { "type": "array" },
+        "text": { "type": "string" },
+        "messageKind": { "type": "string", "enum": ["TEXT", "PHOTO", "VOICE"] },
+        "mediaNote": { "type": "string" },
+        "reaction": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["conversationId", "senderId", "senderName", "memberUids", "text", "messageKind", "createdAt"]
+    },
+    "ModerationReport": {
+      "title": "ModerationReport",
+      "description": "User safety, spam, or copyright report managed in the Admin Dashboard.",
+      "type": "object",
+      "properties": {
+        "reporterId": { "type": "string" },
+        "targetType": { "type": "string", "enum": ["POST", "VIDEO", "USER", "LIVE_STREAM", "COPYRIGHT"] },
+        "targetId": { "type": "string" },
+        "targetTitle": { "type": "string" },
+        "reason": { "type": "string" },
+        "aiRiskSummary": { "type": "string" },
+        "status": { "type": "string", "enum": ["OPEN", "RESOLVED", "DISMISSED"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["reporterId", "targetType", "targetId", "targetTitle", "reason", "status", "createdAt", "updatedAt"]
+    },
+    "UserNotification": {
+      "title": "UserNotification",
+      "description": "Per-user activity, live stream, and breaking news notification.",
+      "type": "object",
+      "properties": {
+        "category": { "type": "string", "enum": ["FOLLOW", "LIKE", "COMMENT", "LIVE", "NEWS", "MESSAGE"] },
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["category", "title", "body", "read", "createdAt"]
+    },
+    "PayoutRequest": {
+      "title": "PayoutRequest",
+      "description": "Creator monetization withdrawal request and payment history entry.",
+      "type": "object",
+      "properties": {
+        "amountInr": { "type": "number" },
+        "source": { "type": "string" },
+        "upiOrBankMasked": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING", "PAID", "REJECTED"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["amountInr", "source", "upiOrBankMasked", "status", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserAccount" },
+      "description": "Private user account and settings isolated to owner and admins."
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/UserNotification" },
+      "description": "User-scoped notifications."
+    },
+    "/users/{userId}/payouts/{payoutId}": {
+      "schema": { "$ref": "#/entities/PayoutRequest" },
+      "description": "Creator monetization payout history and withdrawal requests."
+    },
+    "/public_profiles/{userId}": {
+      "schema": { "$ref": "#/entities/PublicProfile" },
+      "description": "Public creator and celebrity profiles without PII."
+    },
+    "/posts/{postId}": {
+      "schema": { "$ref": "#/entities/PostItem" },
+      "description": "Multilingual posts, short videos, memes, news articles, and celebrity updates."
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/PostComment" },
+      "description": "Comments nested under each post."
+    },
+    "/live_streams/{streamId}": {
+      "schema": { "$ref": "#/entities/LiveStream" },
+      "description": "Live video broadcast sessions."
+    },
+    "/live_streams/{streamId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/LiveMessage" },
+      "description": "Real-time comments, reactions, and gifts during a live video stream."
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/Conversation" },
+      "description": "Direct and group chat conversations scoped to memberUids."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessage" },
+      "description": "Messages inside a conversation with denormalized memberUids."
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/ModerationReport" },
+      "description": "Safety, spam, and copyright reports for Admin Dashboard moderation."
+    }
+  }
+}

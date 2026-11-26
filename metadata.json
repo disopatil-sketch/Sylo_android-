@@ -1,0 +1,6 @@
+{
+  "name": "Sylo",
+  "description": "Multilingual social media, short videos, live streaming, news, memes, and entertainment platform for India and South Asia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
