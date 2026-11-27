@@ -3,7 +3,7 @@
 **Effective Date:** November 26, 2026  
 **App Name:** SYLO (*Your Language. Your World.*)  
 **Package Name:** `com.aistudio.sylo.krxvmz`  
-**Contact Email:** disopatil@gmail.com  
+**Contact Email:**divipimediatech@gmail.com
 
 ---
 
@@ -84,7 +84,7 @@ We retain your account data only for as long as your account remains active or a
 
 You can delete your account and associated profile data at any time:
 1. **In-App Deletion:** Open **SYLO → Profile → Settings & Safety → Delete Account**.
-2. **Email Request:** Contact **disopatil@gmail.com** from your registered email address with the subject line `"SYLO Account Deletion Request"`.
+2. **Email Request:** Contact **divipimediatech@gmail.com** from your registered email address with the subject line `"SYLO Account Deletion Request"`.
 
 Upon deletion, your account profile and private records are permanently removed from our active Firestore database.
 
@@ -92,7 +92,7 @@ Upon deletion, your account profile and private records are permanently removed 
 
 ## 7. Children's Privacy
 
-SYLO is not directed to children under the age of 13 (or the applicable age of digital consent in your country, such as under 18 without verifiable parental consent under India's DPDP Act). We do not knowingly collect personal data from children without required consent. If you believe a child has provided personal information to SYLO, please contact us at **disopatil@gmail.com** so we can promptly remove the account and data.
+SYLO is not directed to children under the age of 13 (or the applicable age of digital consent in your country, such as under 18 without verifiable parental consent under India's DPDP Act). We do not knowingly collect personal data from children without required consent. If you believe a child has provided personal information to SYLO, please contact us at **divipimediatech@gmail.com** so we can promptly remove the account and data.
 
 ---
 
@@ -105,7 +105,7 @@ Depending on your region (including India and South Asia), you have the right to
 - Report privacy concerns, content violations, or copyright claims
 
 To exercise any of these rights or submit a grievance, please contact:
-- **Email:** disopatil@gmail.com
+- **Email:** divipimediatech@gmail.com
 
 ---
 
